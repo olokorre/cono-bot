@@ -37,7 +37,7 @@ async def on_message(message):
         await message.channel.send('`~teste` = _Não faz nada muito especial..._\n`~responda [texto]` = Responde a qualquer pergunta!\n`~youtube [texto]` = Pesquisa no youtube... uau!\n`~sobre` = Mostra informações sobre mim.\n`~comandos` = Mostra essa tela...')
 
     if message.content.startswith('~sobre'):
-        await message.channel.send('Versão: Dev\nMeu criador: olokorre#0738\nDesenvolvido em Python')
+        await message.channel.send('Versão: Dev\nMeu criador: olokorre#0738\nDesenvolvido em Python\nCódigo fonte: https://github.com/olokorre/cono-bot')
 
 if __name__ == "__main__":
     client.run(config('TOKEN'))
