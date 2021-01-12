@@ -15,14 +15,14 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user: return
     
-    if message.content.startswith('~teste'):
+    if message.content.startswith('~test'):
         await message.channel.send('Olá %s' %(message.author.mention))
     
     if any(salutation in message.content for salutation in salutations):
         await message.channel.send(random.choice(salutations_response))
 
-    if message.content.startswith('~responda'):
-        question = message.content.split('~responda ', 1)[1]
+    if message.content.startswith('~answer'):
+        question = message.content.split('~answer ', 1)[1]
         response = search('"%s"' %(question), stop=1)
         for i in response:
             await message.channel.send('%s' %(i))
@@ -33,11 +33,17 @@ async def on_message(message):
         for i in response:
             await message.channel.send('%s' %(i))
 
-    if message.content.startswith('~comandos'):
-        await message.channel.send('`~teste` = _Não faz nada muito especial..._\n`~responda [texto]` = Responde a qualquer pergunta!\n`~youtube [texto]` = Pesquisa no youtube... uau!\n`~sobre` = Mostra informações sobre mim.\n`~comandos` = Mostra essa tela...')
+    if message.content.startswith('~commands'):
+        await message.channel.send('`~test` = _Não faz nada muito especial..._\n`~answer [texto]` = Responde a qualquer pergunta!\n`~youtube [texto]` = Pesquisa no youtube... uau!\n`~about` = Mostra informações about mim.\n`~commands` = Mostra essa tela...')
 
-    if message.content.startswith('~sobre'):
+    if message.content.startswith('~say'):
+        say = message.content.split('~say ', 1)[1]
+        await message.delete()
+        await message.channel.send('%s' %say)
+
+    if message.content.startswith('~about'):
         await message.channel.send('Versão: Dev\nMeu criador: olokorre#0738\nDesenvolvido em Python\nCódigo fonte: https://github.com/olokorre/cono-bot')
+
 
 if __name__ == "__main__":
     client.run(config('TOKEN'))
